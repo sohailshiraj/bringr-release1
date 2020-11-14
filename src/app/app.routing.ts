@@ -143,6 +143,13 @@ export const appRoutes: Route[] = [
                 (m) => m.UsersModule
               ),
           },
+          {
+            path: 'orders',
+            loadChildren: () =>
+              import('./modules/admin/orders/orders.module').then(
+                (m) => m.OrdersModule
+              ),
+          },
           // {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.module').then(m => m.AnalyticsModule)},
           // {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.module').then(m => m.CryptoModule)},
         ],

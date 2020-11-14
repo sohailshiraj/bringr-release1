@@ -2,9 +2,9 @@
   <div class="header">
     <div class="container">
       <!-- <div class="breadcrumb">
-                <span class="path">UI ELEMENTS</span>
-            </div> -->
-      <h1>Users</h1>
+                  <span class="path">UI ELEMENTS</span>
+              </div> -->
+      <h1>Orders</h1>
     </div>
   </div>
 
@@ -20,11 +20,11 @@
     </div>
     <div>
       <mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="uuid">
+        <ng-container matColumnDef="order_id">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            UUID
+            Order No
           </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{ row.uuid }} </mat-cell>
+          <mat-cell *matCellDef="let row"> {{ row.order_id }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="full_name">
@@ -36,21 +36,21 @@
           </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="city">
+        <ng-container matColumnDef="payment_type">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            City
+            Payment Type
           </mat-header-cell>
           <mat-cell *matCellDef="let row">
-            {{ row.city ? row.city : '-' }}
+            {{ row.payment_type ? row.payment_type : '-' }}
           </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="distance">
+        <ng-container matColumnDef="payable_charges">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Distance
+            Charges
           </mat-header-cell>
           <mat-cell *matCellDef="let row">
-            {{ row.distance ? row.distance : '-' }}
+            {{ row.payable_charges ? row.payable_charges : '-' }}
           </mat-cell>
         </ng-container>
 
