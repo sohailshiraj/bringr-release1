@@ -8,13 +8,18 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
   // Redirect empty path to '/dashboards/finance'
-  { path: '', pathMatch: 'full', redirectTo: 'dashboards/finance' },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'admin/dashboard',
+    canActivate: [AuthGuard],
+  },
 
   // Redirect signed in user to the '/dashboards/finance'
   {
     path: 'signed-in-redirect',
     pathMatch: 'full',
-    redirectTo: 'dashboards/finance',
+    redirectTo: 'admin/dashboard',
   },
 
   // Auth routes (guest)
@@ -122,9 +127,22 @@ export const appRoutes: Route[] = [
     children: [
       // Dashboards
       {
-        path: 'dashboards',
+        path: 'admin',
         children: [
-          // {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.module').then(m => m.FinanceModule)},
+          {
+            path: 'dashboard',
+            loadChildren: () =>
+              import('./modules/dashboard/dashboard.module').then(
+                (m) => m.DashboardModule
+              ),
+          },
+          {
+            path: 'users',
+            loadChildren: () =>
+              import('./modules/admin/users/users.module').then(
+                (m) => m.UsersModule
+              ),
+          },
           // {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.module').then(m => m.AnalyticsModule)},
           // {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.module').then(m => m.CryptoModule)},
         ],

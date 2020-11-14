@@ -1,0 +1,94 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+  <div class="header">
+    <div class="container">
+      <!-- <div class="breadcrumb">
+                <span class="path">UI ELEMENTS</span>
+            </div> -->
+      <h1>Users</h1>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="filter-container">
+      <mat-form-field>
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Filter"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="uuid">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            UUID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.uuid }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="full_name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Full Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.full_name ? row.full_name : '-' }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            City
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.city ? row.city : '-' }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="distance">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            distance
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.distance ? row.distance : '-' }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Status
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.status ? row.status : '-' }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-button class="action_btn">
+              <span class="material-icons"> remove_red_eye </span>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+      </mat-table>
+
+      <div *ngIf="isLoading" class="spinner-container">
+        <mat-progress-spinner
+          color="primary"
+          mode="indeterminate"
+          diameter="50"
+        >
+        </mat-progress-spinner>
+      </div>
+
+      <mat-paginator
+        *ngIf="!isLoading"
+        [pageSizeOptions]="[5, 10, 25]"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>
