@@ -1,0 +1,35 @@
+.custom-label-cls {
+  div {
+    margin: 0 10px 0 10px;
+    span {
+      width: 100%;
+    }
+  }
+}
+
+.close-icon {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  transform: translate(50%, -50%);
+}
+
+@media only screen and (min-width: 800px) {
+  .custom-label-cls {
+    display: flex;
+    justify-content: space-evenly;
+
+    div {
+      max-width: 33%;
+      min-width: 33%;
+      margin: 0 10px 0 10px;
+      span {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.detail-sub-heading {
+  margin: 0;
+}
