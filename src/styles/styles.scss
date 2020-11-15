@@ -852,6 +852,24 @@ app-users {
 // -----------------------------------------------------------------------------------------------------
 // @ Theming
 // -----------------------------------------------------------------------------------------------------
+
+@include treo-theme {
+  $background: map-get($theme, background);
+  $is-dark: map-get($theme, is-dark);
+
+  app-orders {
+    @if (not $is-dark) {
+      background: map-get($background, card);
+    }
+  }
+
+  app-users {
+    @if (not $is-dark) {
+      background: map-get($background, card);
+    }
+  }
+}
+
 @include treo-theme {
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
