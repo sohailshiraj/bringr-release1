@@ -7,10 +7,9 @@ export type Theme = 'auto' | 'dark' | 'light';
  * AppConfig interface. Update this interface to strictly type your config
  * object.
  */
-export interface AppConfig
-{
-    layout: Layout;
-    theme: Theme;
+export interface AppConfig {
+  layout: Layout;
+  theme: Theme;
 }
 
 /**
@@ -22,6 +21,6 @@ export interface AppConfig
  * 'ConfigService'.
  */
 export const appConfig: AppConfig = {
-    layout: 'classy',
-    theme : 'light'
+  layout: 'classic',
+  theme: 'light',
 };

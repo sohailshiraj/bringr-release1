@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -30,6 +31,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTabsModule,
+    MatMenuModule,
+    MatProgressBarModule,
   ],
   exports: [
     CommonModule,
@@ -47,6 +50,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDialogModule,
     MatTabsModule,
     MatMenuModule,
+    MatProgressBarModule,
   ],
 })
 export class SharedModule {}

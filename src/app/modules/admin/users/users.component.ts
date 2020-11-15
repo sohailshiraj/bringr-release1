@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
     'actions',
   ];
   dataSource: MatTableDataSource<any>;
-
+  dataList = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -51,6 +51,7 @@ export class UsersComponent implements OnInit {
             (res: any) => {
               if (res.data && res.data.length > 0) {
                 this.dataSource = new MatTableDataSource(res.data);
+                this.dataList = res.data;
                 setTimeout(() => {
                   this.dataSource.paginator = this.paginator;
                   this.dataSource.sort = this.sort;
