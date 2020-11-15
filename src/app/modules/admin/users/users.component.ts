@@ -1,7 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserDetailModalComponent } from './components/user-detail-modal/user-detail-modal.component';
 import { UsersService } from './service/users.service';
 
 @Component({
@@ -28,7 +30,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     public userService: UsersService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -72,6 +75,23 @@ export class UsersComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  viewDetails(data) {
+    const dialogRef = this.dialog.open(UserDetailModalComponent, {
+      hasBackdrop: true,
+      width: '60vw',
+      height: '80vh',
+      panelClass: 'custom-dialog-container',
+      data: {
+        data: data,
+      },
+    });
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log('The dialog was closed');
+    //   // this.animal = result;
+    // });
   }
 
   getPosition(): Promise<any> {
