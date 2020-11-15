@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserDetailModalComponent } from './components/user-detail-modal/user-detail-modal.component';
@@ -31,7 +32,8 @@ export class UsersComponent implements OnInit {
   constructor(
     public userService: UsersService,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -62,13 +64,15 @@ export class UsersComponent implements OnInit {
               this.isLoading = false;
             },
             (err) => {
-              alert('Unable to get User List');
+              this.openSnackBar('Unable to get User List');
               this.isLoading = false;
             }
           );
       })
       .catch((e) => {
-        alert('Please give permission to browser and then refresh the page');
+        this.openSnackBar(
+          'Please give permission to browser and then refresh the page'
+        );
       });
   }
 
@@ -81,9 +85,9 @@ export class UsersComponent implements OnInit {
   viewDetails(data) {
     const dialogRef = this.dialog.open(UserDetailModalComponent, {
       hasBackdrop: true,
-      width: '60vw',
-      height: '80vh',
-      panelClass: 'custom-dialog-container',
+      maxHeight: '100%',
+      height: '100%',
+      panelClass: ['custom-dialog-container', 'sidebar-modal'],
       data: {
         data: data,
       },
@@ -105,6 +109,12 @@ export class UsersComponent implements OnInit {
           reject(err);
         }
       );
+    });
+  }
+
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, 'OK', {
+      duration: 2000,
     });
   }
 }

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
@@ -31,7 +32,8 @@ export class OrdersComponent implements OnInit {
   constructor(
     private ordersService: OrdersService,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class OrdersComponent implements OnInit {
         this.isLoading = false;
       },
       (err) => {
-        alert('Unable to get Order List');
+        this.openSnackBar('Unable to get Order List');
         this.isLoading = false;
       }
     );
@@ -72,9 +74,9 @@ export class OrdersComponent implements OnInit {
   viewDetails(data) {
     const dialogRef = this.dialog.open(OrderDetailModalComponent, {
       hasBackdrop: true,
-      width: '60vw',
-      height: '80vh',
-      panelClass: 'custom-dialog-container',
+      maxHeight: '100%',
+      height: '100%',
+      panelClass: ['custom-dialog-container', 'sidebar-modal'],
       data: {
         data: data,
       },
@@ -84,5 +86,11 @@ export class OrdersComponent implements OnInit {
     //   console.log('The dialog was closed');
     //   // this.animal = result;
     // });
+  }
+
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, 'OK', {
+      duration: 2000,
+    });
   }
 }

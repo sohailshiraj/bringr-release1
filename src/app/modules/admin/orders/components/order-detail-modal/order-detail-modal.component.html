@@ -1,152 +1,162 @@
-<button mat-button class="close-icon" mat-dialog-close>
-  <mat-icon>close</mat-icon>
-</button>
-<h2 mat-dialog-title>Order Details</h2>
-<mat-dialog-content>
-  <mat-tab-group>
-    <mat-tab label="Details">
-      <div class="bg-card rounded border p-8 mb-12">
-        <h6 class="detail-sub-heading">User</h6>
-        <div class="custom-label-cls">
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >User Id</span
-            >
-            <p class="px-3 py-1">{{ details?.user_id }}</p>
-            <!-- <ul>
-                            <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                        </ul> -->
-          </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Full Name</span
-            >
-            <p class="px-3 py-1">{{ details?.full_name }}</p>
-            <!-- <ul>
-                          <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                      </ul> -->
-          </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Mobile Number</span
-            >
-            <p class="px-3 py-1">{{ details?.mobile }}</p>
-            <!-- <ul>
-                            <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                        </ul> -->
-          </div>
-        </div>
-      </div>
-      <div class="bg-card rounded border p-8 mb-12">
-        <h6 class="detail-sub-heading">Order</h6>
-        <div class="custom-label-cls">
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Order Id</span
-            >
-            <p class="px-3 py-1">{{ details?.order_id }}</p>
-            <!-- <ul>
-                            <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                        </ul> -->
-          </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Status</span
-            >
-            <p class="px-3 py-1">{{ details?.status }}</p>
-            <!-- <ul>
-                          <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                      </ul> -->
-          </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Payment Type</span
-            >
-            <p class="px-3 py-1">{{ details?.payment_type }}</p>
-            <!-- <ul>
-                            <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                        </ul> -->
-          </div>
-        </div>
-        <div class="custom-label-cls">
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Payable Charges</span
-            >
-            <p class="px-3 py-1">{{ details?.payable_charges }}</p>
-            <!-- <ul>
+<div id="sidebarpanel">
+  <div class="modal-header">
+    <h4 class="modal-title">Order Details</h4>
+    <div class="close-btn-icon">
+      <button mat-dialog-close>
+        <i class="material-icons"> chevron_left </i>
+      </button>
+    </div>
+  </div>
+  <div class="mbody">
+    <div class="modal-body">
+      <mat-tab-group>
+        <mat-tab label="Details">
+          <div class="bg-card rounded border p-8 mb-12">
+            <h6 class="detail-sub-heading">User</h6>
+            <div class="custom-label-cls">
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >User Id</span
+                >
+                <p class="px-3 py-1">{{ details?.user_id }}</p>
+                <!-- <ul>
+                                <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                            </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Full Name</span
+                >
+                <p class="px-3 py-1">{{ details?.full_name }}</p>
+                <!-- <ul>
                               <li *ngFor="let listItem of change.list">{{listItem}}</li>
                           </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Mobile Number</span
+                >
+                <p class="px-3 py-1">{{ details?.mobile }}</p>
+                <!-- <ul>
+                                <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                            </ul> -->
+              </div>
+            </div>
           </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Paid</span
-            >
-            <p class="px-3 py-1">{{ details?.paid ? 'Yes' : 'No' }}</p>
-            <!-- <ul>
-                            <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                        </ul> -->
-          </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Created</span
-            >
-            <p class="px-3 py-1">{{ details?.created }}</p>
-            <!-- <ul>
+          <div class="bg-card rounded border p-8 mb-12">
+            <h6 class="detail-sub-heading">Order</h6>
+            <div class="custom-label-cls">
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Order Id</span
+                >
+                <p class="px-3 py-1">{{ details?.order_id }}</p>
+                <!-- <ul>
+                                <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                            </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Status</span
+                >
+                <p class="px-3 py-1">{{ details?.status }}</p>
+                <!-- <ul>
                               <li *ngFor="let listItem of change.list">{{listItem}}</li>
                           </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Payment Type</span
+                >
+                <p class="px-3 py-1">{{ details?.payment_type }}</p>
+                <!-- <ul>
+                                <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                            </ul> -->
+              </div>
+            </div>
+            <div class="custom-label-cls">
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Payable Charges</span
+                >
+                <p class="px-3 py-1">{{ details?.payable_charges }}</p>
+                <!-- <ul>
+                                  <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                              </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Paid</span
+                >
+                <p class="px-3 py-1">{{ details?.paid ? 'Yes' : 'No' }}</p>
+                <!-- <ul>
+                                <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                            </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Created</span
+                >
+                <p class="px-3 py-1">{{ details?.created }}</p>
+                <!-- <ul>
+                                  <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                              </ul> -->
+              </div>
+            </div>
+            <div class="custom-label-cls">
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Pickup Location</span
+                >
+                <p class="px-3 py-1">{{ details?.pickup_location }}</p>
+                <!-- <ul>
+                                  <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                              </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Delivery Address</span
+                >
+                <p class="px-3 py-1">
+                  {{ details?.delivery_address_details?.street }}
+                </p>
+                <!-- <ul>
+                                <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                            </ul> -->
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Delivery Date & Time</span
+                >
+                <p class="px-3 py-1">
+                  {{
+                    details.delivery_datetime ? details?.delivery_datetime : '-'
+                  }}
+                </p>
+                <!-- <ul>
+                                  <li *ngFor="let listItem of change.list">{{listItem}}</li>
+                              </ul> -->
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="custom-label-cls">
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Pickup Location</span
-            >
-            <p class="px-3 py-1">{{ details?.pickup_location }}</p>
-            <!-- <ul>
-                              <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                          </ul> -->
-          </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Delivery Address</span
-            >
-            <p class="px-3 py-1">
-              {{ details?.delivery_address_details?.street }}
-            </p>
-            <!-- <ul>
-                            <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                        </ul> -->
-          </div>
-          <div class="mt-8">
-            <span
-              class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
-              >Delivery Date & Time</span
-            >
-            <p class="px-3 py-1">
-              {{ details.delivery_datetime ? details?.delivery_datetime : '-' }}
-            </p>
-            <!-- <ul>
-                              <li *ngFor="let listItem of change.list">{{listItem}}</li>
-                          </ul> -->
-          </div>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="More"> -- </mat-tab>
-  </mat-tab-group>
-</mat-dialog-content>
+        </mat-tab>
+        <mat-tab label="More"> -- </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
 <!-- <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
