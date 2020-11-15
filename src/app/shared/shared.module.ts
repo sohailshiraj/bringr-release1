@@ -14,7 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 @NgModule({
   imports: [
     CommonModule,
@@ -33,6 +33,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatTabsModule,
     MatMenuModule,
     MatProgressBarModule,
+    MatSidenavModule,
   ],
   exports: [
     CommonModule,
@@ -51,6 +52,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatTabsModule,
     MatMenuModule,
     MatProgressBarModule,
+    MatSidenavModule,
   ],
 })
 export class SharedModule {}
