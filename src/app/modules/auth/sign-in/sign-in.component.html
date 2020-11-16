@@ -28,10 +28,10 @@
 
         <!-- Sign in form -->
         <form [formGroup]="signInForm">
-          <!-- Email field -->
+          <!-- User Name -->
           <mat-form-field>
-            <mat-label>Email address</mat-label>
-            <input id="email" matInput [formControlName]="'email'" />
+            <mat-label>User Name</mat-label>
+            <input id="username" matInput [formControlName]="'username'" />
           </mat-form-field>
 
           <!-- Password field -->
@@ -66,7 +66,7 @@
           </mat-form-field>
 
           <!-- Field footer -->
-          <div class="field-footer">
+          <!-- <div class="field-footer">
             <div class="remember-me">
               <mat-checkbox
                 [color]="'primary'"
@@ -78,7 +78,7 @@
             <a class="link" [routerLink]="['/forgot-password']"
               >Forgot password?</a
             >
-          </div>
+          </div> -->
 
           <!-- Submit button -->
           <button

@@ -13,13 +13,13 @@ import { DashboardService } from './service/dashboard.service';
 export class DashboardComponent implements OnInit {
   //Users Table
   recentUsersDataSource: MatTableDataSource<any>;
-  recentUsersTableColumns = ['full_name', 'mobile', 'device', 'status'];
+  recentUsersTableColumns = ['full_name', 'mobile', 'status'];
   @ViewChild('recentUsersTable', { read: MatSort })
   recentUsersTableMatSort: MatSort;
 
   //Partners Table
   recentPartnersDataSource: MatTableDataSource<any>;
-  recentPartnersTableColumns = ['full_name', 'mobile', 'device', 'status'];
+  recentPartnersTableColumns = ['full_name', 'mobile', 'status'];
   @ViewChild('recentPartnersTable', { read: MatSort })
   recentPartnersTableMatSort: MatSort;
 
@@ -29,9 +29,10 @@ export class DashboardComponent implements OnInit {
   @ViewChild('recentOrdersTable', { read: MatSort })
   recentOrdersTableMatSort: MatSort;
 
-  currentDate = new Date();
-  isLoading: boolean = false;
+  public currentDate = new Date();
+  public isLoading: boolean = false;
   public counts: any = {};
+  public tableData: any = {};
   constructor(
     private service: DashboardService,
     private cdr: ChangeDetectorRef,
@@ -51,6 +52,7 @@ export class DashboardComponent implements OnInit {
             this.counts = res.data.counts;
 
             if (res.data.lists) {
+              this.tableData = res.data.lists;
               this.recentUsersDataSource = new MatTableDataSource(
                 res.data.lists.users_list.data
               );

@@ -134,7 +134,9 @@
             >
               Recent Users
             </div>
-            <div class="text-sm text-hint font-medium">5 new today</div>
+            <div class="text-sm text-hint font-medium">
+              {{ tableData.users_list.count }} new today
+            </div>
           </div>
           <div class="overflow-auto">
             <table
@@ -176,23 +178,6 @@
                 <td mat-cell *matCellDef="let user">
                   <span class="pr-6 whitespace-no-wrap">
                     {{ user.mobile }}
-                  </span>
-                </td>
-              </ng-container>
-
-              <!-- device -->
-              <ng-container matColumnDef="device">
-                <th
-                  class="bg-cool-gray-50 dark:bg-cool-gray-700 border-t"
-                  mat-header-cell
-                  mat-sort-header
-                  *matHeaderCellDef
-                >
-                  <span class="whitespace-no-wrap"> Device </span>
-                </th>
-                <td mat-cell *matCellDef="let user">
-                  <span class="pr-6 whitespace-no-wrap">
-                    {{ user.device }}
                   </span>
                 </td>
               </ng-container>
@@ -281,7 +266,9 @@
             >
               Recent Partners
             </div>
-            <div class="text-sm text-hint font-medium">5 new today</div>
+            <div class="text-sm text-hint font-medium">
+              {{ tableData.partners_list.count }} new today
+            </div>
           </div>
           <div class="overflow-auto">
             <table
@@ -323,23 +310,6 @@
                 <td mat-cell *matCellDef="let partner">
                   <span class="pr-6 whitespace-no-wrap">
                     {{ partner.mobile }}
-                  </span>
-                </td>
-              </ng-container>
-
-              <!-- device -->
-              <ng-container matColumnDef="device">
-                <th
-                  class="bg-cool-gray-50 dark:bg-cool-gray-700 border-t"
-                  mat-header-cell
-                  mat-sort-header
-                  *matHeaderCellDef
-                >
-                  <span class="whitespace-no-wrap"> Device </span>
-                </th>
-                <td mat-cell *matCellDef="let partner">
-                  <span class="pr-6 whitespace-no-wrap">
-                    {{ partner.device }}
                   </span>
                 </td>
               </ng-container>
@@ -424,7 +394,9 @@
             >
               Recent Orders
             </div>
-            <div class="text-sm text-hint font-medium">5 new today</div>
+            <div class="text-sm text-hint font-medium">
+              {{ tableData.orders_list.count }} new today
+            </div>
           </div>
           <div class="overflow-auto">
             <table
@@ -461,7 +433,7 @@
                   mat-sort-header
                   *matHeaderCellDef
                 >
-                  <span class="whitespace-no-wrap"> Date </span>
+                  <span class="whitespace-no-wrap"> Paid </span>
                 </th>
                 <td mat-cell *matCellDef="let order">
                   <span class="pr-6 whitespace-no-wrap">
@@ -500,7 +472,13 @@
                   *matFooterCellDef
                   colspan="6"
                 >
-                  <button mat-button [color]="'primary'">See all orders</button>
+                  <button
+                    mat-button
+                    [routerLink]="['/admin/orders']"
+                    [color]="'primary'"
+                  >
+                    See all orders
+                  </button>
                 </td>
               </ng-container>
 

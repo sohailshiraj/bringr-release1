@@ -1,93 +1,112 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanActivateChild,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree,
+} from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from 'app/core/auth/auth.service';
 import { switchMap } from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad
-{
-    /**
-     * Constructor
-     *
-     * @param {AuthService} _authService
-     * @param {Router} _router
-     */
-    constructor(
-        private _authService: AuthService,
-        private _router: Router
-    )
-    {
+export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad {
+  /**
+   * Constructor
+   *
+   * @param {AuthService} _authService
+   * @param {Router} _router
+   */
+  constructor(private _authService: AuthService, private _router: Router) {}
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Private methods
+  // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Check the authenticated status
+   *
+   * @private
+   */
+  private _check(): Observable<boolean> {
+    if (localStorage.getItem('user_details')) {
+      this._router.navigate(['']);
+      return of(false);
+    } else {
+      return of(true);
     }
+    // Check the authentication status
+    // return this._authService.check()
+    //            .pipe(
+    //                switchMap((authenticated) => {
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
+    //                    // If the user is authenticated...
+    //                    if ( authenticated )
+    //                    {
+    //                        // Redirect to the root
+    //                        this._router.navigate(['']);
 
-    /**
-     * Check the authenticated status
-     *
-     * @private
-     */
-    private _check(): Observable<boolean>
-    {
-        // Check the authentication status
-        return this._authService.check()
-                   .pipe(
-                       switchMap((authenticated) => {
+    //                        // Prevent the access
+    //                        return of(false);
+    //                    }
 
-                           // If the user is authenticated...
-                           if ( authenticated )
-                           {
-                               // Redirect to the root
-                               this._router.navigate(['']);
+    //                    // Allow the access
+    //                    return of(true);
+    //                })
+    //            );
+  }
 
-                               // Prevent the access
-                               return of(false);
-                           }
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
 
-                           // Allow the access
-                           return of(true);
-                       })
-                   );
-    }
+  /**
+   * Can activate
+   *
+   * @param route
+   * @param state
+   */
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this._check();
+  }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
+  /**
+   * Can activate child
+   *
+   * @param childRoute
+   * @param state
+   */
+  canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return this._check();
+  }
 
-    /**
-     * Can activate
-     *
-     * @param route
-     * @param state
-     */
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
-    {
-        return this._check();
-    }
-
-    /**
-     * Can activate child
-     *
-     * @param childRoute
-     * @param state
-     */
-    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
-    {
-        return this._check();
-    }
-
-    /**
-     * Can load
-     *
-     * @param route
-     * @param segments
-     */
-    canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean
-    {
-        return this._check();
-    }
+  /**
+   * Can load
+   *
+   * @param route
+   * @param segments
+   */
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this._check();
+  }
 }

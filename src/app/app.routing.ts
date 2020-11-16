@@ -12,7 +12,6 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'admin/dashboard',
-    canActivate: [AuthGuard],
   },
 
   // Redirect signed in user to the '/dashboards/finance'
