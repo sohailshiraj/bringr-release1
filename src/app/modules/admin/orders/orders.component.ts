@@ -37,14 +37,16 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getOrdersList();
+    if (this.getUUID()) {
+      this.getOrdersList(this.getUUID());
+    }
   }
 
   ngAfterViewInit() {}
 
-  getOrdersList() {
+  getOrdersList(user_id) {
     this.isLoading = true;
-    this.ordersService.getOrdersList('5f2a7e5a47b88').subscribe(
+    this.ordersService.getOrdersList(user_id).subscribe(
       (res: any) => {
         if (res.data && res.data.length > 0) {
           this.dataSource = new MatTableDataSource(res.data);
@@ -92,5 +94,14 @@ export class OrdersComponent implements OnInit {
     this._snackBar.open(message, 'OK', {
       duration: 2000,
     });
+  }
+
+  getUUID() {
+    let user_det = JSON.parse(atob(localStorage.getItem('user_details')));
+    if (user_det) {
+      return user_det.uuid;
+    } else {
+      return null;
+    }
   }
 }

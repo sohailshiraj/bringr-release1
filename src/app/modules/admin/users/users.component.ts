@@ -37,37 +37,37 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUserList();
+    if (this.getUUID()) {
+      this.getUserList(this.getUUID());
+    }
   }
 
   ngAfterViewInit() {}
 
-  getUserList() {
+  getUserList(user_id) {
     this.isLoading = true;
     this.getPosition()
       .then((pos) => {
         console.log(`Positon: ${pos.lng} ${pos.lat}`);
-        this.userService
-          .getUserList('5f2a7e5a47b88', pos.lng, pos.lat)
-          .subscribe(
-            (res: any) => {
-              if (res.data && res.data.length > 0) {
-                this.dataSource = new MatTableDataSource(res.data);
-                this.dataList = res.data;
-                setTimeout(() => {
-                  this.dataSource.paginator = this.paginator;
-                  this.dataSource.sort = this.sort;
-                });
+        this.userService.getUserList(user_id, pos.lng, pos.lat).subscribe(
+          (res: any) => {
+            if (res.data && res.data.length > 0) {
+              this.dataSource = new MatTableDataSource(res.data);
+              this.dataList = res.data;
+              setTimeout(() => {
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              });
 
-                this.cdr.detectChanges();
-              }
-              this.isLoading = false;
-            },
-            (err) => {
-              this.openSnackBar('Unable to get User List');
-              this.isLoading = false;
+              this.cdr.detectChanges();
             }
-          );
+            this.isLoading = false;
+          },
+          (err) => {
+            this.openSnackBar('Unable to get User List');
+            this.isLoading = false;
+          }
+        );
       })
       .catch((e) => {
         this.openSnackBar(
@@ -116,5 +116,14 @@ export class UsersComponent implements OnInit {
     this._snackBar.open(message, 'OK', {
       duration: 2000,
     });
+  }
+
+  getUUID() {
+    let user_det = JSON.parse(atob(localStorage.getItem('user_details')));
+    if (user_det) {
+      return user_det.uuid;
+    } else {
+      return null;
+    }
   }
 }

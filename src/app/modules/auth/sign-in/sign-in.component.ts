@@ -90,7 +90,7 @@ export class AuthSignInComponent implements OnInit {
             // Show the error message
             this.message = {
               appearance: 'outline',
-              content: 'Wrong email or password',
+              content: 'Wrong username or password',
               shake: true,
               showIcon: false,
               type: 'error',

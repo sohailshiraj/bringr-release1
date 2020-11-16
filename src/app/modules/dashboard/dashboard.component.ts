@@ -40,7 +40,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getDashboardStats('5fb22d632601b');
+    if (this.getUUID()) {
+      this.getDashboardStats(this.getUUID());
+    }
   }
 
   getDashboardStats(user_id) {
@@ -78,5 +80,14 @@ export class DashboardComponent implements OnInit {
     this._snackBar.open(message, 'OK', {
       duration: 2000,
     });
+  }
+
+  getUUID() {
+    let user_det = JSON.parse(atob(localStorage.getItem('user_details')));
+    if (user_det) {
+      return user_det.uuid;
+    } else {
+      return null;
+    }
   }
 }
