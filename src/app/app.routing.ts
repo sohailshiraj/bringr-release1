@@ -11,14 +11,14 @@ export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'admin/dashboard',
+    redirectTo: 'dashboard',
   },
 
   // Redirect signed in user to the '/dashboards/finance'
   {
     path: 'signed-in-redirect',
     pathMatch: 'full',
-    redirectTo: 'admin/dashboard',
+    redirectTo: 'dashboard',
   },
 
   // Auth routes (guest)
@@ -126,7 +126,7 @@ export const appRoutes: Route[] = [
     children: [
       // Dashboards
       {
-        path: 'admin',
+        path: '',
         children: [
           {
             path: 'dashboard',

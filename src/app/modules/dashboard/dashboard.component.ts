@@ -25,7 +25,13 @@ export class DashboardComponent implements OnInit {
 
   //Orders Table
   recentOrdersDataSource: MatTableDataSource<any>;
-  recentOrdersTableColumns = ['order_id', 'paid', 'status'];
+  recentOrdersTableColumns = [
+    'order_id',
+    'full_name',
+    'paid',
+    'status',
+    'partner_name',
+  ];
   @ViewChild('recentOrdersTable', { read: MatSort })
   recentOrdersTableMatSort: MatSort;
 

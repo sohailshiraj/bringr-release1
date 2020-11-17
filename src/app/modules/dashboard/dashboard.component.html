@@ -55,7 +55,7 @@
           >
             <div class="absolute bottom-0 right-0 w-24 h-24 -m-6">
               <mat-icon
-                class="icon-size-96 opacity-12 text-green"
+                class="icon-size-96 opacity-12 text-red"
                 [svgIcon]="'heroicons_outline:check-circle'"
               ></mat-icon>
             </div>
@@ -66,7 +66,7 @@
                 >
                   Total Partners
                 </div>
-                <div class="text-green font-medium text-sm">
+                <div class="text-red font-medium text-sm">
                   As of {{ currentDate | date: 'longDate' }}
                 </div>
               </div>
@@ -92,7 +92,7 @@
           >
             <div class="absolute bottom-0 right-0 w-24 h-24 -m-6">
               <mat-icon
-                class="icon-size-96 opacity-12 text-green"
+                class="icon-size-96 opacity-12 text-blue"
                 [svgIcon]="'heroicons_outline:check-circle'"
               ></mat-icon>
             </div>
@@ -103,7 +103,7 @@
                 >
                   Total Orders
                 </div>
-                <div class="text-green font-medium text-sm">
+                <div class="text-blue font-medium text-sm">
                   As of {{ currentDate | date: 'longDate' }}
                 </div>
               </div>
@@ -229,7 +229,7 @@
                 >
                   <button
                     mat-button
-                    [routerLink]="['/admin/users']"
+                    [routerLink]="['/users']"
                     [color]="'primary'"
                   >
                     See all users
@@ -425,6 +425,22 @@
                 </td>
               </ng-container>
 
+              <ng-container matColumnDef="full_name">
+                <th
+                  class="bg-cool-gray-50 dark:bg-cool-gray-700 border-t"
+                  mat-header-cell
+                  mat-sort-header
+                  *matHeaderCellDef
+                >
+                  <span class="whitespace-no-wrap"> User Name </span>
+                </th>
+                <td mat-cell *matCellDef="let order">
+                  <span class="pr-6 whitespace-no-wrap">
+                    {{ order.full_name }}
+                  </span>
+                </td>
+              </ng-container>
+
               <!-- Date -->
               <ng-container matColumnDef="paid">
                 <th
@@ -433,7 +449,7 @@
                   mat-sort-header
                   *matHeaderCellDef
                 >
-                  <span class="whitespace-no-wrap"> Paid </span>
+                  <span class="whitespace-no-wrap"> Paid Status</span>
                 </th>
                 <td mat-cell *matCellDef="let order">
                   <span class="pr-6 whitespace-no-wrap">
@@ -464,6 +480,22 @@
                 </td>
               </ng-container>
 
+              <ng-container matColumnDef="partner_name">
+                <th
+                  class="bg-cool-gray-50 dark:bg-cool-gray-700 border-t"
+                  mat-header-cell
+                  mat-sort-header
+                  *matHeaderCellDef
+                >
+                  <span class="whitespace-no-wrap"> Partner Name </span>
+                </th>
+                <td mat-cell *matCellDef="let order">
+                  <span class="pr-6 whitespace-no-wrap">
+                    {{ order.partner_name }}
+                  </span>
+                </td>
+              </ng-container>
+
               <!-- Footer -->
               <ng-container matColumnDef="recentOrdersTableFooter">
                 <td
@@ -474,7 +506,7 @@
                 >
                   <button
                     mat-button
-                    [routerLink]="['/admin/orders']"
+                    [routerLink]="['/orders']"
                     [color]="'primary'"
                   >
                     See all orders
