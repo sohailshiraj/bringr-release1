@@ -155,6 +155,7 @@
               class="product-row"
               mat-row
               *matRowDef="let product; columns: displayedColumns"
+              (click)="viewDetails(product)"
             ></tr>
           </table>
         </div>

@@ -153,6 +153,7 @@ app-orders {
           tbody {
             tr.product-row {
               height: 72px;
+              cursor: pointer;
 
               &:last-child {
                 td {
@@ -572,6 +573,7 @@ app-users {
           tbody {
             tr.product-row {
               height: 72px;
+              cursor: pointer;
 
               &:last-child {
                 td {
