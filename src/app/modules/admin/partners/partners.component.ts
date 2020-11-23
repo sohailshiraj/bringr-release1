@@ -31,46 +31,62 @@ export class PartnersComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private partnerService: PartnersService
   ) {}
 
   ngOnInit(): void {
     if (this.getUUID()) {
-      // this.getUserList(this.getUUID());
+      this.getPartnersList(this.getUUID());
     }
   }
 
-  // getUserList(user_id) {
-  //   this.isLoading = true;
-  //   this.getPosition()
-  //     .then((pos) => {
-  //       console.log(`Positon: ${pos.lng} ${pos.lat}`);
-  //       this.userService.getUserList(user_id, pos.lng, pos.lat).subscribe(
-  //         (res: any) => {
-  //           if (res.data && res.data.length > 0) {
-  //             this.dataSource = new MatTableDataSource(res.data);
-  //             this.dataList = res.data;
-  //             setTimeout(() => {
-  //               this.dataSource.paginator = this.paginator;
-  //               this.dataSource.sort = this.sort;
-  //             });
+  getPartnersList(user_id) {
+    this.isLoading = true;
+    this.getPosition()
+      .then((pos) => {
+        console.log(`Positon: ${pos.lng} ${pos.lat}`);
+        this.partnerService.getPartnerList(user_id, pos.lng, pos.lat).subscribe(
+          (res: any) => {
+            if (res.data && res.data.length > 0) {
+              this.dataSource = new MatTableDataSource(res.data);
+              this.dataList = res.data;
+              setTimeout(() => {
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              });
 
-  //             this.cdr.detectChanges();
-  //           }
-  //           this.isLoading = false;
-  //         },
-  //         (err) => {
-  //           this.openSnackBar('Unable to get User List');
-  //           this.isLoading = false;
-  //         }
-  //       );
-  //     })
-  //     .catch((e) => {
-  //       this.openSnackBar(
-  //         'Please give permission to browser and then refresh the page'
-  //       );
-  //     });
-  // }
+              this.cdr.detectChanges();
+            } else {
+              this.openSnackBar('Unable to get Partner List');
+            }
+            this.isLoading = false;
+          },
+          (err) => {
+            this.openSnackBar('Unable to get Partner List');
+            this.isLoading = false;
+          }
+        );
+      })
+      .catch((e) => {
+        this.openSnackBar(
+          'Please give permission to browser and then refresh the page'
+        );
+      });
+  }
+
+  getPosition(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (resp) => {
+          resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

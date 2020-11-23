@@ -5,7 +5,7 @@
     <div class="header">
       <!-- Title -->
       <div class="title">
-        <h1>Users</h1>
+        <h1>Partners</h1>
       </div>
 
       <!-- Main actions -->
@@ -31,7 +31,7 @@
 
     <!-- Products list -->
     <div class="table-list">
-      <ng-container *ngIf="dataList.length > 0; else noUsers">
+      <ng-container *ngIf="dataList.length > 0; else noPartners">
         <div class="table-wrapper">
           <!-- Table -->
           <table
@@ -186,8 +186,8 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
       </ng-container>
 
-      <ng-template #noUsers>
-        <div class="no-products">Loading users data...</div>
+      <ng-template #noPartners>
+        <div class="no-products">Loading partners data...</div>
       </ng-template>
     </div>
   </div>
