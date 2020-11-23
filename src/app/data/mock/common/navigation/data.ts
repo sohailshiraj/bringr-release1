@@ -27,6 +27,12 @@ export const defaultNavigation: TreoNavigationItem[] = [
         type: 'basic',
         link: '/orders',
       },
+      {
+        id: 'admin.partners',
+        title: 'Partners',
+        type: 'basic',
+        link: '/partners',
+      },
     ],
   },
   //   {

@@ -1,0 +1,104 @@
+<div id="sidebarpanel">
+  <div class="modal-header">
+    <h4 class="modal-title">Partner Details</h4>
+    <div class="close-btn-icon">
+      <button mat-dialog-close>
+        <i class="material-icons"> chevron_left </i>
+      </button>
+    </div>
+  </div>
+  <div class="mbody">
+    <div class="modal-body">
+      <mat-tab-group>
+        <mat-tab label="Details">
+          <div class="bg-card rounded border p-8 mb-12">
+            <!-- <h6 class="detail-sub-heading"></h6> -->
+            <div class="custom-label-cls">
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >UUID</span
+                >
+                <p class="px-3 py-1">{{ details?.uuid }}</p>
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Full Name</span
+                >
+                <p class="px-3 py-1">{{ details?.full_name }}</p>
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Mobile</span
+                >
+                <p class="px-3 py-1">{{ details?.mobile }}</p>
+              </div>
+            </div>
+            <div class="custom-label-cls">
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >City</span
+                >
+                <p class="px-3 py-1">{{ details?.city }}</p>
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Country</span
+                >
+                <p class="px-3 py-1">{{ details?.country }}</p>
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Status</span
+                >
+                <p class="px-3 py-1">{{ details?.status }}</p>
+              </div>
+            </div>
+            <div class="custom-label-cls">
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Distance</span
+                >
+                <p class="px-3 py-1">{{ details?.distance }}</p>
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Created Date</span
+                >
+                <p class="px-3 py-1">
+                  {{ details?.created }}
+                </p>
+              </div>
+              <div class="mt-8">
+                <span
+                  class="inline-flex bg-default rounded px-3 py-1 text-secondary font-bold"
+                  >Updated Date</span
+                >
+                <p class="px-3 py-1">
+                  {{ details.updated }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="More"> -- </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <!-- <button mat-button class="close-icon" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+    <h2 mat-dialog-title>User Details</h2> -->
+</div>
+
+<!-- <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+    </mat-dialog-actions> -->
