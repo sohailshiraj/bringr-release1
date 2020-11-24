@@ -169,7 +169,12 @@
           [showFirstLastButtons]="true"
         ></mat-paginator> -->
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+        <mat-paginator
+          [length]="page_details.total"
+          [pageSize]="page_details.pageSize"
+          [pageSizeOptions]="[5, 10, 25]"
+          (page)="pageChanged($event)"
+        ></mat-paginator>
       </ng-container>
 
       <ng-template #noOrders>

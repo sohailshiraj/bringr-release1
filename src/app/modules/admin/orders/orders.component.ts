@@ -29,6 +29,14 @@ export class OrdersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   public isLoading: boolean = false;
+
+  //Pagination
+  public page_details = {
+    total: 0,
+    pageIndex: 0,
+    pageSize: 10,
+  };
+
   constructor(
     private ordersService: OrdersService,
     private cdr: ChangeDetectorRef,
@@ -46,25 +54,32 @@ export class OrdersComponent implements OnInit {
 
   getOrdersList(user_id) {
     this.isLoading = true;
-    this.ordersService.getOrdersList(user_id).subscribe(
-      (res: any) => {
-        if (res.data && res.data.length > 0) {
-          this.dataSource = new MatTableDataSource(res.data);
-          this.dataList = res.data;
-          setTimeout(() => {
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-          });
+    this.ordersService
+      .getOrdersListWithPagination(
+        user_id,
+        this.page_details.pageIndex,
+        this.page_details.pageSize
+      )
+      .subscribe(
+        (res: any) => {
+          this.page_details.total = res.orders_count ? res.orders_count : 0;
+          if (res.data && res.data.length > 0) {
+            this.dataSource = new MatTableDataSource(res.data);
+            this.dataList = res.data;
+            // setTimeout(() => {
+            //   this.dataSource.paginator = this.paginator;
+            //   this.dataSource.sort = this.sort;
+            // });
 
-          this.cdr.detectChanges();
+            this.cdr.detectChanges();
+          }
+          this.isLoading = false;
+        },
+        (err) => {
+          this.openSnackBar('Unable to get Order List');
+          this.isLoading = false;
         }
-        this.isLoading = false;
-      },
-      (err) => {
-        this.openSnackBar('Unable to get Order List');
-        this.isLoading = false;
-      }
-    );
+      );
   }
 
   applyFilter(filterValue: string) {
@@ -102,6 +117,15 @@ export class OrdersComponent implements OnInit {
       return user_det.uuid;
     } else {
       return null;
+    }
+  }
+
+  pageChanged(event) {
+    console.log(event);
+    this.page_details.pageIndex = event.pageIndex;
+    this.page_details.pageSize = event.pageSize;
+    if (this.getUUID()) {
+      this.getOrdersList(this.getUUID());
     }
   }
 }

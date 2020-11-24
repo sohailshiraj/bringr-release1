@@ -13,4 +13,9 @@ export class PartnersService {
     let url = `${environment.serviceURL}manager/partner_list.php?manager_id=${userId}&lat=${lat}&long=${long}`;
     return this.http.get(url);
   }
+
+  public getPartnerListWithPagination(userId, lat, long, pageIndex, offset) {
+    let url = `${environment.serviceURL}manager/partner_list_new.php?manager_id=${userId}&lat=${lat}&long=${long}&page_token=${pageIndex}&offset=${offset}`;
+    return this.http.get(url);
+  }
 }

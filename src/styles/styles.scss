@@ -1290,6 +1290,12 @@ app-partners {
       background: map-get($background, card);
     }
   }
+
+  app-partners {
+    @if (not $is-dark) {
+      background: map-get($background, card);
+    }
+  }
 }
 
 @include treo-theme {

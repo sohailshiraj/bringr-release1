@@ -29,6 +29,13 @@ export class UsersComponent implements OnInit {
 
   public isLoading: boolean = false;
 
+  //Pagination
+  public page_details = {
+    total: 0,
+    pageIndex: 0,
+    pageSize: 10,
+  };
+
   constructor(
     public userService: UsersService,
     private cdr: ChangeDetectorRef,
@@ -49,25 +56,34 @@ export class UsersComponent implements OnInit {
     this.getPosition()
       .then((pos) => {
         console.log(`Positon: ${pos.lng} ${pos.lat}`);
-        this.userService.getUserList(user_id, pos.lng, pos.lat).subscribe(
-          (res: any) => {
-            if (res.data && res.data.length > 0) {
-              this.dataSource = new MatTableDataSource(res.data);
-              this.dataList = res.data;
-              setTimeout(() => {
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-              });
+        this.userService
+          .getUserListWithPagination(
+            user_id,
+            pos.lng,
+            pos.lat,
+            this.page_details.pageIndex,
+            this.page_details.pageSize
+          )
+          .subscribe(
+            (res: any) => {
+              this.page_details.total = res.orders_count ? res.orders_count : 0;
+              if (res.data && res.data.length > 0) {
+                this.dataSource = new MatTableDataSource(res.data);
+                this.dataList = res.data;
+                // setTimeout(() => {
+                //   this.dataSource.paginator = this.paginator;
+                //   this.dataSource.sort = this.sort;
+                // });
 
-              this.cdr.detectChanges();
+                this.cdr.detectChanges();
+              }
+              this.isLoading = false;
+            },
+            (err) => {
+              this.openSnackBar('Unable to get User List');
+              this.isLoading = false;
             }
-            this.isLoading = false;
-          },
-          (err) => {
-            this.openSnackBar('Unable to get User List');
-            this.isLoading = false;
-          }
-        );
+          );
       })
       .catch((e) => {
         this.openSnackBar(
@@ -124,6 +140,15 @@ export class UsersComponent implements OnInit {
       return user_det.uuid;
     } else {
       return null;
+    }
+  }
+
+  pageChanged(event) {
+    console.log(event);
+    this.page_details.pageIndex = event.pageIndex;
+    this.page_details.pageSize = event.pageSize;
+    if (this.getUUID()) {
+      this.getUserList(this.getUUID());
     }
   }
 }

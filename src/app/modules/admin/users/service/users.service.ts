@@ -12,4 +12,9 @@ export class UsersService {
     let url = `${environment.serviceURL}manager/user_list.php?manager_id=${userId}&lat=${lat}&long=${long}`;
     return this.http.get(url);
   }
+
+  public getUserListWithPagination(userId, lat, long, pageIndex, offset) {
+    let url = `${environment.serviceURL}manager/user_list_new.php?manager_id=${userId}&lat=${lat}&long=${long}&page_token=${pageIndex}&offset=${offset}`;
+    return this.http.get(url);
+  }
 }
