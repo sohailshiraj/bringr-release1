@@ -13,8 +13,16 @@ export class UsersService {
     return this.http.get(url);
   }
 
-  public getUserListWithPagination(userId, lat, long, pageIndex, offset) {
-    let url = `${environment.serviceURL}manager/user_list_new.php?manager_id=${userId}&lat=${lat}&long=${long}&page_token=${pageIndex}&offset=${offset}`;
+  public getUserListWithPagination(
+    userId,
+    lat,
+    long,
+    pageIndex,
+    offset,
+    searchValue
+  ) {
+    let searchUrlString = searchValue == '' ? '' : `&search=${searchValue}`;
+    let url = `${environment.serviceURL}manager/user_list_new.php?manager_id=${userId}&lat=${lat}&long=${long}&page_token=${pageIndex}&offset=${offset}${searchUrlString}`;
     return this.http.get(url);
   }
 }

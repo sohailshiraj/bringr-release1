@@ -13,8 +13,9 @@ export class OrdersService {
     return this.http.get(url);
   }
 
-  public getOrdersListWithPagination(userId, pageIndex, offset) {
-    let url = `${environment.serviceURL}manager/get_all_orders_new.php?manager_id=${userId}&page_token=${pageIndex}&offset=${offset}`;
+  public getOrdersListWithPagination(userId, pageIndex, offset, searchValue) {
+    let searchUrlString = searchValue == '' ? '' : `&search=${searchValue}`;
+    let url = `${environment.serviceURL}manager/get_all_orders_new.php?manager_id=${userId}&page_token=${pageIndex}&offset=${offset}${searchUrlString}`;
     return this.http.get(url);
   }
 }

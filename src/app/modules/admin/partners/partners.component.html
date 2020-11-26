@@ -18,7 +18,9 @@
               matInput
               [autocomplete]="'off'"
               [placeholder]="'Search Partners'"
-              (keyup)="applyFilter($event.target.value)"
+              [(ngModel)]="searchValue"
+              (keyup)="applyFilter($event)"
+              (blur)="onRemovingFocus($event)"
             />
           </mat-form-field>
         </div>
@@ -184,6 +186,7 @@
           ></mat-paginator> -->
 
         <mat-paginator
+          #paginator
           [length]="page_details.total"
           [pageSize]="page_details.pageSize"
           [pageSizeOptions]="[5, 10, 25]"

@@ -24,7 +24,7 @@ export class OrdersComponent implements OnInit {
   ];
   dataSource: MatTableDataSource<any>;
   dataList = [];
-
+  searchValue = '';
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -58,7 +58,8 @@ export class OrdersComponent implements OnInit {
       .getOrdersListWithPagination(
         user_id,
         this.page_details.pageIndex,
-        this.page_details.pageSize
+        this.page_details.pageSize,
+        this.searchValue
       )
       .subscribe(
         (res: any) => {
@@ -72,6 +73,8 @@ export class OrdersComponent implements OnInit {
             // });
 
             this.cdr.detectChanges();
+          } else {
+            this.dataSource = new MatTableDataSource([]);
           }
           this.isLoading = false;
         },
@@ -82,10 +85,37 @@ export class OrdersComponent implements OnInit {
       );
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+  applyFilter(event) {
+    // filterValue = filterValue.trim(); // Remove whitespace
+    // filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    // this.dataSource.filter = filterValue;
+    if (event.code == 'Enter') {
+      let filterValue = event.target.value;
+      filterValue = filterValue.toLowerCase();
+      if (this.getUUID()) {
+        this.initializePageDetails();
+        this.getOrdersList(this.getUUID());
+      }
+    }
+  }
+
+  onRemovingFocus(event) {
+    let filterValue = event.target.value;
+    filterValue = filterValue.toLowerCase();
+    if (this.getUUID()) {
+      this.initializePageDetails();
+      this.getOrdersList(this.getUUID());
+    }
+  }
+
+  initializePageDetails() {
+    this.page_details = {
+      total: 0,
+      pageIndex: 0,
+      pageSize: 10,
+    };
+    this.paginator.firstPage();
+    this.cdr.detectChanges();
   }
 
   viewDetails(data) {
