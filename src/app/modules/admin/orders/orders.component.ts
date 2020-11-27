@@ -75,6 +75,7 @@ export class OrdersComponent implements OnInit {
             this.cdr.detectChanges();
           } else {
             this.dataSource = new MatTableDataSource([]);
+            this.openSnackBar('Unable to get Order List');
           }
           this.isLoading = false;
         },
@@ -89,7 +90,7 @@ export class OrdersComponent implements OnInit {
     // filterValue = filterValue.trim(); // Remove whitespace
     // filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     // this.dataSource.filter = filterValue;
-    if (event.code == 'Enter') {
+    if (event.code) {
       let filterValue = event.target.value;
       filterValue = filterValue.toLowerCase();
       if (this.getUUID()) {

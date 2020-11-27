@@ -23,9 +23,7 @@ export class PartnersService {
     searchValue
   ) {
     let searchUrlString = searchValue == '' ? '' : `&search=${searchValue}`;
-    let url = `${
-      environment.serviceURL
-    }manager/partner_list_new.php?manager_id=${'5f2a7e5a47b88'}&lat=${lat}&long=${long}&page_token=${pageIndex}&offset=${offset}${searchUrlString}`;
+    let url = `${environment.serviceURL}manager/partner_list_new.php?manager_id=${userId}&lat=${lat}&long=${long}&page_token=${pageIndex}&offset=${offset}${searchUrlString}`;
     return this.http.get(url);
   }
 }
